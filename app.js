@@ -63,7 +63,7 @@ function cargarAlumnos(e) {
                         timer: 3000
                     });
 
-                    // mostrarMensaje('✅ Alumno cargado correctamente en un nuevo curso ✅ ', 'success');
+
                 } else {
                     Swal.fire({
                         icon: "error",
@@ -71,7 +71,7 @@ function cargarAlumnos(e) {
                         showConfirmButton: false,
                         timer: 3000
                     });
-                    // mostrarMensaje('❌ Nota incorrecta. Debe estar entre 0 y 10  ❌', 'error');
+                   
                 }
             } else {
                 Swal.fire({
@@ -80,7 +80,7 @@ function cargarAlumnos(e) {
                     showConfirmButton: false,
                     timer: 3000
                 });
-                // mostrarMensaje('❌ Usuario ya registrado en el curso ❌', 'error');
+                
             }
         } else {
             // El legajo ya está en uso por otro alumno
@@ -91,7 +91,7 @@ function cargarAlumnos(e) {
                 timer: 3000
             });
 
-            // mostrarMensaje('❌ El legajo ya está en uso por otro alumno ❌ ', 'error');
+           
         }
     } else {
         // Si no existe el legajo, registrar al alumno
@@ -107,7 +107,6 @@ function cargarAlumnos(e) {
                 timer: 3000
             });
 
-            // mostrarMensaje('✅ Alumno cargado correctamente ✅', 'success');
         } else {
             Swal.fire({
                 icon: "error",
@@ -115,22 +114,10 @@ function cargarAlumnos(e) {
                 showConfirmButton: false,
                 timer: 3000
             });
-            // mostrarMensaje('❌ Nota incorrecta. Debe estar entre 0 y 10 ❌', 'error');
+
         }
     }
 }
-
-// Función para mostrar mensajes en el documento
-function mostrarMensaje(mensaje, tipo) {
-    let mensajeElemento = document.getElementById('mensaje');
-    mensajeElemento.innerHTML = '';
-    let mensajeMostrar = document.createElement('p');
-    mensajeMostrar.className = tipo;
-    mensajeMostrar.innerHTML = mensaje;
-    mensajeElemento.appendChild(mensajeMostrar);
-}
-
-
 
 if (document.getElementById('formulario')) {
     let formulario = document.getElementById('formulario');
@@ -228,9 +215,6 @@ function actualizarPromedio(legajo) {
 }
 
 
-
-
-
 if (document.getElementById('buscar')) {
 
     let botonBuscar = document.getElementById('buscar')
@@ -261,7 +245,7 @@ function buscarPorMateria() {
         let sinAlumnos = document.createElement('p')
         sinAlumnos.innerHTML = `<p> Primero debe cargar los alumnos para poder buscarlos </p>`
         mostrar.append(sinAlumnos)
-        // console.log('No hay alumnos inscriptos')
+
     } else if (alumnosOrdenados.length > 0) {
         for (let alumno of alumnosFiltrados) {
             let listaCurso = document.createElement('ul')
@@ -287,7 +271,7 @@ function buscarPorMateria() {
             let sinAlumnos = document.createElement('p')
             sinAlumnos.innerHTML = `<p> Debe elegir una opción para buscar </p>`
             mostrar.append(sinAlumnos)
-            // console.log('aaa')
+
         } else {
             let sinAlumnos = document.createElement('p')
             sinAlumnos.innerHTML = `<p> no se encontraron alumnos en este curso</p>`
@@ -344,7 +328,7 @@ function usarUbicacionAlmacenada(ubicacionAlmacenada) {
         <li> 📌 Ubicacion: ${ubicacionAlmacenada.ubicacion}, Argentina </li>
         <li> 🌡 Temperatura: ${ubicacionAlmacenada.temperatura}°c</li>
         <li> 🌡 Sensación térmica: ${ubicacionAlmacenada.sensacionTermica}°c</li>
-    `;
+        <li> 🌡 Humedad: ${ubicacionAlmacenada.sensacionTermica}°c</li>`;
     mostrarCliima.append(mostrarDatos);
 }
 
@@ -357,38 +341,3 @@ if (ubicacionAlmacenada) {
 }
 
 
-// function mostrar_position(posicion) {
-//     // console.log(posicion)
-//     let lat = posicion.coords.latitude
-//     let long = posicion.coords.longitude
-//     let apiKey = '105d933104434c2120e4c2038ab86971'
-
-//     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric&lang=es`)
-//         .then(response => response.json())
-//         .then(data => {
-//             let datos = data
-//             console.log(datos)
-//             let ubicacion = data.name
-//             console.log(ubicacion)
-//             let temperatura = parseInt(data.main.temp)
-//             console.log(temperatura)
-
-//             let sensacionTermica = parseInt(data.main.feels_like)
-//             console.log(sensacionTermica)
-
-
-//             let mostrarCliima = document.getElementById('contenido')
-//             mostrarCliima.innerHTML = ''
-
-//             let mostrarDatos = document.createElement('ul')
-//             mostrarDatos.innerHTML = `
-//         <li> 📌 Ubicacion: ${ubicacion}</li>
-//         <li> 🌡 Temperatura: ${temperatura}°</li>
-//         <li> 🌡 Sensación termica: ${sensacionTermica}°</li>
-//         `
-//             mostrarCliima.append(mostrarDatos)
-
-//         })
- 
-// }
-// navigator.geolocation.getCurrentPosition(mostrar_position)
